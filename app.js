@@ -15,9 +15,9 @@ app.use(
 );
 
 async function LoadModels() {
-  await faceapi.nets.faceRecognitionNet.loadFromDisk(__dirname + "/models");
-  await faceapi.nets.faceLandmark68Net.loadFromDisk(__dirname + "/models");
-  await faceapi.nets.ssdMobilenetv1.loadFromDisk(__dirname + "/models");
+  await faceapi.nets.faceRecognitionNet.loadFromDisk("./models");
+  await faceapi.nets.faceLandmark68Net.loadFromDisk("./models");
+  await faceapi.nets.ssdMobilenetv1.loadFromDisk("./models");
 }
 
 LoadModels();
@@ -52,6 +52,7 @@ async function uploadLabeledImages(images, label) {
         .withFaceDescriptor();
       descriptions.push(detections.descriptor);
     }
+    console.log(`Progress = 100%`);
 
     const createFace = new FaceModel({
       label: label,
